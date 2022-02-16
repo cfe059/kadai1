@@ -3,6 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\CalcSq;
+use App\Http\Controllers\CalcCube;
+use App\Http\Controllers\CalcCircle;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,4 +20,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::middleware(['middleware' => 'api'])->group(function () {
+    Route::get('/sq', [CalcSq::class, 'index']);
+    Route::get('/cube', [CalcCube::class, 'index']);
+    Route::get('/circle', [CalcCircle::class, 'index']);
 });
